@@ -15,9 +15,9 @@ int main(void)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	char **args;
+	/*char **args;*/
 
-	while (1);
+	while (1)
 	{
 		printf("$ ");
 
@@ -33,7 +33,7 @@ int main(void)
 			free(line);
 			exit(1);
 		}
-		args = parse(line);
+		/*args = parse(line);
 
 		if (args[0] != NULL)
 		{
@@ -45,7 +45,7 @@ int main(void)
 			}
 			execute(args);
 		}
-		free(args);
+		free(args);*/
 	}
 	free(line);
 	return (0);
