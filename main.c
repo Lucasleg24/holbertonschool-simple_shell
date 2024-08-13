@@ -7,15 +7,14 @@
 char **parse(char *buffer, const char *str)
 {
 	char *token = NULL, **commands = NULL;
-	size_t bufsize = 0;
 	int i = 0, j, tokenlen;
 
 	if (buffer == NULL || str == NULL)
 		return NULL;
 
-	for (j = 0; input[j]; j++)
+	for (j = 0; buffer[j]; j++)
 	{
-		if (input[j] == str)
+		if (buffer[j] == *str)
 			tokenlen++;
 	}
 	commands = malloc((tokenlen + 1) * sizeof(char *));
@@ -41,7 +40,7 @@ char **parse(char *buffer, const char *str)
 	}
 	commands[i] = NULL;
 	
-	return commands;
+	return (commands);
 }
 
 /**
@@ -52,12 +51,11 @@ int main(int argc, char **argv)
 {
 
 	char *line;
-	ssize_t read;
-	/*char **args;*/
+	char **args;
 
 	line = input("$");
 
-	args = parse(line, ' ');
+	args = parse(line, " \n");
 
 	if (args[0] != NULL)
 	{
@@ -67,7 +65,7 @@ int main(int argc, char **argv)
 			free(args);
 			exit(0);
 		}
-		execute(args);
+		/*execute(args);*/
 	}
 	free(args);
 
@@ -79,7 +77,7 @@ int main(int argc, char **argv)
  *
  */
 
-char input(const char *text)
+char* input(const char *text)
 {
 	char *buffer = NULL;
 	size_t len = 0;

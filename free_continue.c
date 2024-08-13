@@ -2,10 +2,12 @@
 
 void free_continue(char **command)
 {
+	size_t i;
+
 	if (command == NULL)
 		return;
 
-	for (size_t i = 0; command[i] != NULL; i++)
+	for (i = 0; command[i] != NULL; i++)
 	{
 		free(command[i]);
 	}
