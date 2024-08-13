@@ -8,13 +8,17 @@ char **parse(char *buffer, const char *str)
 {
 	char *token = NULL, **commands = NULL;
 	size_t bufsize = 0;
-	int i = 0;
+	int i = 0, j, tokenlen;
 
 	if (buffer == NULL || str == NULL)
 		return NULL;
 
-	bufsize = strlen(buffer);
-	commands = malloc((bufsize + 1) * sizeof(char *));
+	for (j = 0; input[j]; j++)
+	{
+		if (input[j] == str)
+			tokenlen++;
+	}
+	commands = malloc((tokenlen + 1) * sizeof(char *));
 	if (commands == NULL)
 	{
 		perror("Impossible d'allouer le buffer");
@@ -44,44 +48,47 @@ char **parse(char *buffer, const char *str)
  *
  */
 
-int main(void)
+int main(int argc, char **argv)
 {
 
-	char *line = NULL;
-	size_t len = 0;
+	char *line;
 	ssize_t read;
 	/*char **args;*/
 
-	while (1)
+	line = input("$");
+
+	args = parse(line, ' ');
+
+	if (args[0] != NULL)
 	{
-		printf("$ ");
-
-		read = getline(&line, &len, stdin);
-		if (read == -1)
+		if (strcmp(args[0], "exit") == 0)
 		{
-			if (feof(stdin))
-			{
-				free(line);
-				exit(0);
-			}
-			perror("getline");
 			free(line);
-			exit(1);
+			free(args);
+			exit(0);
 		}
-		/*args = parse(line);
-
-		if (args[0] != NULL)
-		{
-			if (strcmp(args[0], "exit") == 0)
-			{
-				free(line);
-				free(args);
-				exit(0);
-			}
-			execute(args);
-		}
-		free(args);*/
+		execute(args);
 	}
+	free(args);
+
 	free(line);
 	return (0);
+}
+
+/**
+ *
+ */
+
+char input(const char *text)
+{
+	char *buffer = NULL;
+	size_t len = 0;
+
+	printf("%s ", text);
+	fflush(stdout);
+
+	if (getline(&buffer, &len, stdin) == -1)
+		exit(EXIT_FAILURE);
+
+	return (buffer);
 }
