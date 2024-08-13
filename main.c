@@ -47,7 +47,7 @@ char **parse(char *buffer, const char *str)
  *
  */
 
-int main(int argc, char **argv)
+int main(void)
 {
 
 	char *line;
@@ -82,8 +82,11 @@ char* input(const char *text)
 	char *buffer = NULL;
 	size_t len = 0;
 
-	printf("%s ", text);
-	fflush(stdout);
+	if (isatty(0))
+	{
+		printf("%s ", text);
+		fflush(stdout);
+	}
 
 	if (getline(&buffer, &len, stdin) == -1)
 		exit(EXIT_FAILURE);

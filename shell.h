@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-int main(int argc, char **argv);
+int main(void);
 char* input(const char *text);
 char **parse(char *buffer, const char *str);
 
