@@ -10,7 +10,7 @@ char **parse(char *buffer, const char *str)
 	int i = 0, j, tokenlen;
 
 	if (buffer == NULL || str == NULL)
-		return NULL;
+		return (NULL);
 
 	for (j = 0; buffer[j]; j++)
 	{
@@ -22,24 +22,24 @@ char **parse(char *buffer, const char *str)
 	{
 		perror("Impossible d'allouer le buffer");
 		free(buffer);
-		return NULL;
+		return (NULL);
 	}
-	
+
 	token = strtok(buffer, str);
-	for (i = 0;token != NULL; i++)
+	for (i = 0; token != NULL; i++)
 	{
 		commands[i] = malloc(strlen(token) + 1);
 		if (commands[i] == NULL)
 		{
 			perror("Impossible d'allouer le buffer");
 			free(commands);
-			return NULL;
+			return (NULL);
 		}
 		strcpy(commands[i], token);
 		token = strtok(NULL, str);
 	}
 	commands[i] = NULL;
-	
+
 	return (commands);
 }
 
@@ -47,29 +47,42 @@ char **parse(char *buffer, const char *str)
  *
  */
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
-
 	char *line;
 	char **args;
 
-	line = input("$");
+	(void)argc;
+	(void)argv;
 
-	args = parse(line, " \n");
-
-	if (args[0] != NULL)
+	/* La boucle while sert a ne pas sortir aprés du shell aprés un execut*/
+	while (1)
 	{
-		if (strcmp(args[0], "exit") == 0)
-		{
-			free(line);
-			free(args);
-			exit(0);
-		}
-		/*execute(args);*/
-	}
-	free(args);
 
-	free(line);
+		line = input("$");
+		if (line == NULL)
+		{
+			printf("\n");
+			break;
+		}
+
+		args = parse(line, " \n");
+
+		if (args[0] != NULL)
+		{
+			if (strcmp(args[0], "exit") == 0)
+			{
+				free(line);
+				free(args);
+				exit(0);
+			}
+			execute(args, envp);
+		}
+
+		free(args);
+		free(line);
+	}
+
 	return (0);
 }
 
@@ -77,7 +90,7 @@ int main(void)
  *
  */
 
-char* input(const char *text)
+char *input(const char *text)
 {
 	char *buffer = NULL;
 	size_t len = 0;
