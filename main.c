@@ -53,6 +53,9 @@ int main(int argc, char **argv, char **envp)
 	char *line;
 	char **args;
 
+	(void)argc;
+	(void)argv;
+
 	while (1)
 	{
 		line = input("$");
