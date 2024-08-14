@@ -38,6 +38,8 @@ int main(int argc, char **argv, char **envp)
 			}
 			else if (strcmp(args[0], "cd") == 0)
 				change_dir(args[1]);
+			else if (strcmp(args[0], "env") == 0)
+				print_env(envp);
 			else
 				execute(args, envp);
 		}
