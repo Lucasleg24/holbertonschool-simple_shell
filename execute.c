@@ -18,8 +18,7 @@ void execute(char **command, char **envp)
 	if (actual_command == NULL)
 	{
 		perror(command[0]);
-		free_continue(command);
-		exit(EXIT_FAILURE);
+		return;
 	}
 
 	pid = fork();
