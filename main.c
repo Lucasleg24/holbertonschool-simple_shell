@@ -76,7 +76,11 @@ int main(int argc, char **argv, char **envp)
 				free(args);
 				exit(0);
 			}
-			execute(args, envp);
+			
+			else if (strcmp(args[0], "cd") == 0)
+				change_dir(args[1]);
+			else
+				execute(args, envp);
 		}
 
 		free(args);

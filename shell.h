@@ -14,5 +14,6 @@ char **parse(char *buffer, const char *str);
 char *get_location(char *command, char **envp);
 char *buildPath(char **envp, char *path);
 void execute(char **command, char **envp);
+int change_dir(const char *path);
 
 #endif
