@@ -13,7 +13,10 @@ void execute(char **command, char **envp)
 	pid_t pid;
 	int status;
 
-	actual_command = get_location(command[0], envp);
+	if (command[0][0] == '/')
+		actual_command = command[0];
+	else
+		actual_command = get_location(command[0], envp);
 
 	if (actual_command == NULL)
 	{
@@ -32,5 +35,6 @@ void execute(char **command, char **envp)
 	} else
 		wait(&status);
 
-	free(actual_command);
+	if (actual_command != command[0])
+		free(actual_command);
 }
