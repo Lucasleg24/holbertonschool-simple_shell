@@ -1,19 +1,25 @@
 #include "shell.h"
 
+/**
+ * execute - execute the child process
+ * @command: token arguments
+ * @envp: environnement variable
+ * Return: return void
+ */
+
 void execute(char **command, char **envp)
 {
 	char *actual_command = NULL;
 	pid_t pid;
-	int status, i;
+	int status;
 
 	actual_command = get_location(command[0], envp);
 
 	if (actual_command == NULL)
 	{
-		for (i = 0; command[i] != NULL; i++)
-			printf("%s ", command[i]);
-		printf("\n");
-		return;
+		perror(command[0]);
+		free_continue(command);
+		exit(EXIT_FAILURE);
 	}
 
 	pid = fork();

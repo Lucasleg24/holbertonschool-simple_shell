@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * get_location - search the path of the command
+ * @command: string with argument
+ * @envp: array with pointer
+ * Return: return the file path or error
+ */
+
 char *get_location(char *command, char **envp)
 {
 	char *path = NULL, *path_copy = NULL, *path_token = NULL, *file_path = NULL;

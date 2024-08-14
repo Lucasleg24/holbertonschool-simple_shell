@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * change_dir - use cd
+ * @path: path for cd
+ * Return: return error or success value
+ */
+
 int change_dir(const char *path)
 {
 	char *buf = NULL;
