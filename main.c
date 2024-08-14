@@ -32,7 +32,7 @@ char **parse(char *buffer, const char *str)
 		if (commands[i] == NULL)
 		{
 			perror("Impossible d'allouer le buffer");
-			free(commands);
+			free_continue(commands);
 			return NULL;
 		}
 		strcpy(commands[i], token);
@@ -47,29 +47,40 @@ char **parse(char *buffer, const char *str)
  *
  */
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
 
 	char *line;
 	char **args;
 
-	line = input("$");
-
-	args = parse(line, " \n");
-
-	if (args[0] != NULL)
+	while (1)
 	{
-		if (strcmp(args[0], "exit") == 0)
+		line = input("$");
+		if (line == NULL)
 		{
-			free(line);
-			free(args);
-			exit(0);
+			printf("\n");
+			break;
 		}
-		/*execute(args);*/
-	}
-	free(args);
 
-	free(line);
+		args = parse(line, " \n");
+
+		if (args[0] != NULL)
+		{
+			if (strcmp(args[0], "exit") == 0)
+			{
+				free(line);
+				free_continue(args);
+				exit(0);
+			}
+			else if (strcmp(args[0], "cd") == 0)
+				change_dir(args[1]);
+			else
+				execute(args, envp);
+		}
+		free_continue(args);
+		free(line);
+	}
+
 	return (0);
 }
 
