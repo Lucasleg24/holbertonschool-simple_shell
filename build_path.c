@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * buildPath - build the path
+ * @envp: environnement variable
+ * @path: NULL value for check th true size
+ * Return: return the result in string
+ */
+
 char *buildPath(char **envp, char *path)
 {
 	int i;

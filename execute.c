@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * execute - execute the child process
+ * @command: token arguments
+ * @envp: environnement variable
+ * Return: return void
+ */
+
 void execute(char **command, char **envp)
 {
 	char *actual_command = NULL;
