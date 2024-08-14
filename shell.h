@@ -12,6 +12,7 @@ int main(int argc, char **argv, char **envp);
 char *input(const char *text);
 char **parse(char *buffer, const char *str);
 char *get_location(char *command, char **envp);
+char *buildPath(char **envp, char *path);
 void execute(char **command, char **envp);
 
 #endif
