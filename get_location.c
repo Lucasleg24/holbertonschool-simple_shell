@@ -9,16 +9,16 @@
 
 char *get_location(char *command, char **envp)
 {
-	char *path = NULL, *path_copy = NULL, *path_token = NULL, *file_path = NULL;
+	char *path = NULL, *path_token = NULL, *file_path = NULL;
 	int command_length, directory_length;
 	struct stat buffer;
 
-	path_copy = strdup(buildPath(envp, path));
-	if (path_copy == NULL)
+	path = strdup(buildPath(envp));
+	if (path == NULL)
 		return (NULL);
 
 	command_length = strlen(command);
-	path_token = strtok(path_copy, ":");
+	path_token = strtok(path, ":");
 
 	while (path_token != NULL)
 	{
@@ -27,7 +27,7 @@ char *get_location(char *command, char **envp)
 
 		if (file_path == NULL)
 		{
-			free(path_copy);
+			free(path);
 			return (NULL);
 		}
 
@@ -37,7 +37,7 @@ char *get_location(char *command, char **envp)
 
 		if (stat(file_path, &buffer) == 0 && (buffer.st_mode & S_IXUSR))
 		{
-			free(path_copy);
+			free(path);
 			return (file_path);
 		}
 
@@ -45,6 +45,6 @@ char *get_location(char *command, char **envp)
 		path_token = strtok(NULL, ":");
 	}
 
-	free(path_copy);
+	free(path);
 	return (NULL);
 }

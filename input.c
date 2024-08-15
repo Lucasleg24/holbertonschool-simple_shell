@@ -18,7 +18,10 @@ char *input(const char *text)
 	}
 
 	if (getline(&buffer, &len, stdin) == -1)
+	{
+		free(buffer);
 		exit(EXIT_FAILURE);
+	}
 
 	return (buffer);
 }

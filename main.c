@@ -26,6 +26,12 @@ int main(int argc, char **argv, char **envp)
 		}
 
 		args = parse(line, " \n");
+		if (args == NULL)
+		{
+			perror("parse");
+			free(line);
+			continue;
+		}
 
 		if (args[0] != NULL)
 		{

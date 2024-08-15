@@ -26,11 +26,17 @@ void execute(char **command, char **envp)
 
 	pid = fork();
 	if (pid == -1)
+	{
 		perror("Shell: fork error");
+		if (actual_command != command[0])
+			free(actual_command);
+		return;
+	}
 	else if (pid == 0)
 	{
 		if (execve(actual_command, command, envp) == -1)
 			perror("Shell");
+		free(actual_command);
 		exit(EXIT_FAILURE);
 	} else
 		wait(&status);

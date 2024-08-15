@@ -12,7 +12,7 @@ int main(int argc, char **argv, char **envp);
 char *input(const char *text);
 char **parse(char *buffer, const char *str);
 char *get_location(char *command, char **envp);
-char *buildPath(char **envp, char *path);
+char *buildPath(char **envp);
 void execute(char **command, char **envp);
 int change_dir(const char *path);
 void print_env(char **env);
