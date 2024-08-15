@@ -17,5 +17,6 @@ void execute(char **command, char **envp);
 int change_dir(const char *path);
 void print_env(char **env);
 void free_continue(char **command);
+void shell_exit(char *line, char **args);
 
 #endif
