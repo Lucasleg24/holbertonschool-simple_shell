@@ -15,7 +15,13 @@ void print_env(char **env)
 	for (i = 0; env[i] != NULL; i++)
 	{
 		len = strlen(env[i]);
-		write(1, env[i], len);
+
+		if (write(1, env[i], len))
+		{
+			perror("write");
+			return;
+		}
+
 		write(1, "\n", 1);
 	}
 }

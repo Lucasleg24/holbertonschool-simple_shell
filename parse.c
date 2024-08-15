@@ -10,7 +10,7 @@
 char **parse(char *buffer, const char *str)
 {
 	char *token = NULL, **commands = NULL;
-	int i = 0, j, tokenlen;
+	int i = 0, j, tokenlen = 0;
 
 	if (buffer == NULL || str == NULL)
 		return (NULL);
@@ -24,7 +24,6 @@ char **parse(char *buffer, const char *str)
 	if (commands == NULL)
 	{
 		perror("Impossible d'allouer le buffer");
-		free(buffer);
 		return (NULL);
 	}
 

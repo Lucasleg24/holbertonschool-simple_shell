@@ -26,15 +26,17 @@ int main(int argc, char **argv, char **envp)
 		}
 
 		args = parse(line, " \n");
+		if (args == NULL)
+		{
+			perror("parse");
+			free(line);
+			continue;
+		}
 
 		if (args[0] != NULL)
 		{
 			if (strcmp(args[0], "exit") == 0)
-			{
-				free(line);
-				free_continue(args);
-				exit(0);
-			}
+				shell_exit(line, args);
 			else if (strcmp(args[0], "cd") == 0)
 				change_dir(args[1]);
 			else if (strcmp(args[0], "env") == 0)
