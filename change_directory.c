@@ -17,8 +17,10 @@ int change_dir(const char *path)
 	if (chdir(path) == -1)
 	{
 		perror(path);
+		free(buf);
 		return (-1);
 	}
 
+	free(buf);
 	return (1);
 }
