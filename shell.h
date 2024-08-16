@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 
@@ -18,5 +19,7 @@ int change_dir(const char *path);
 void print_env(char **env);
 void free_continue(char **command);
 void shell_exit(char *line, char **args);
+void end_of_file(char *buf);
+void sigint(int sig);
 
 #endif

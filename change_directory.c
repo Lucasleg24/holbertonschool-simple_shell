@@ -12,7 +12,15 @@ int change_dir(const char *path)
 	size_t size = 1024;
 
 	if (path == NULL)
-		path = getcwd(buf, size);
+	{
+		buf = getcwd(buf, size);
+		if (buf == NULL)
+		{
+			perror("getcwd");
+			return (-1);
+		}
+		path = buf;
+	}
 
 	if (chdir(path) == -1)
 	{
