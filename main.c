@@ -48,6 +48,6 @@ int main(int argc, char **argv, char **envp)
 		free_continue(args);
 		free(line);
 	}
-	shell_exit();
+	shell_exit(line, args);
 	return (0);
 }

@@ -1,5 +1,7 @@
 #include "shell.h"
 
+#define HISTORY_SIZE 100
+
 /**
  * print_history - Display or add order history
  *
@@ -10,15 +12,14 @@
 
 void print_history(const char *command)
 {
-	int HISTORY_SIZE = 100
+	int i;
 	static char *history[HISTORY_SIZE];
 	static int history_count;
-	int i;
 
 	if (command == NULL)
 	{
 		for (i = 0; i < history_count; i++)
-			printf("%d  %s", i + 1, history[i]);
+			printf("%d  %s\n", i + 1, history[i]);
 	} else
 	{
 		if (history_count < HISTORY_SIZE)
@@ -56,9 +57,9 @@ void print_history(const char *command)
 
 void free_history(void)
 {
+	int i;
 	static char *history[HISTORY_SIZE];
 	static int history_count;
-	int i;
 
 	for (i = 0; i < history_count; i++)
 	{
