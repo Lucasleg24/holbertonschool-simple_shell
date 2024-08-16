@@ -15,6 +15,7 @@ int main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, sigint);
 
 	while (1)
 	{
@@ -33,6 +34,10 @@ int main(int argc, char **argv, char **envp)
 			continue;
 		}
 
+		/*
+		if (args[0][0] == EOF)
+			end_of_file(line);
+		*/
 		if (args[0] != NULL)
 		{
 			if (strcmp(args[0], "exit") == 0)
@@ -44,9 +49,9 @@ int main(int argc, char **argv, char **envp)
 			else
 				execute(args, envp);
 		}
-		free_continue(args);
-		free(line);
 	}
+	free_continue(args);
+	free(line);
 
 	return (0);
 }
