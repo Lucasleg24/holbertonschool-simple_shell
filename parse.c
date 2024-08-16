@@ -20,7 +20,7 @@ char **parse(char *buffer, const char *str)
 		if (buffer[j] == *str)
 			tokenlen++;
 	}
-	commands = malloc((tokenlen + 1) * sizeof(char *));
+	commands = malloc((tokenlen + 2) * sizeof(char *));
 	if (commands == NULL)
 	{
 		perror("Impossible d'allouer le buffer");
@@ -40,6 +40,7 @@ char **parse(char *buffer, const char *str)
 		strcpy(commands[i], token);
 		token = strtok(NULL, str);
 	}
+
 	commands[i] = NULL;
 
 	return (commands);
