@@ -1,6 +1,8 @@
 #include "shell.h"
 
 #define HISTORY_SIZE 100
+static char *history[HISTORY_SIZE];
+static int history_count;
 
 /**
  * print_history - Display or add order history
@@ -13,8 +15,7 @@
 void print_history(const char *command)
 {
 	int i;
-	static char *history[HISTORY_SIZE];
-	static int history_count;
+	size_t len;
 
 	if (command == NULL)
 	{
@@ -22,35 +23,34 @@ void print_history(const char *command)
 			printf("%d  %s\n", i + 1, history[i]);
 	} else
 	{
-		if (history_count < HISTORY_SIZE)
-		{
-			history[history_count] = strdup(command);
-			if (history[history_count] == NULL)
-			{
-				perror("strdup");
-				return;
-			}
-			history_count++;
-		} else
+		if (history_count >= HISTORY_SIZE)
 		{
 			free(history[0]);
-			for (i = 1; i < HISTORY_SIZE; i++)
-			{
-				history[i - 1] = history[i];
-			}
-			history[HISTORY_SIZE - 1] = strdup(command);
 
-			if (history[HISTORY_SIZE - 1] == NULL)
-			{
-				perror("strdup");
-				return;
-			}
+			for (i = 1; i < HISTORY_SIZE; i++)
+				history[i - 1] = history[i];
+
+			history_count--;
 		}
+
+		history[history_count] = strdup(command);
+		if (history[history_count] == NULL)
+		{
+			free_history();
+			perror("strdup");
+			return;
+		}
+
+		len = strlen(history[history_count]);
+		if (len > 0 && history[history_count][len - 1] == '\n')
+			history[history_count][len - 1] = '\0';
+
+		history_count++;
 	}
 }
 
 /**
- * free_history - Free the memoty allocated for the hystory
+ * free_history - Free the memory allocated for the hystory
  *
  * Return: Nothing
  */
@@ -58,13 +58,14 @@ void print_history(const char *command)
 void free_history(void)
 {
 	int i;
-	static char *history[HISTORY_SIZE];
-	static int history_count;
 
 	for (i = 0; i < history_count; i++)
 	{
-		free(history[i]);
-		history[i] = NULL;
+		if (history[i] != NULL)
+		{
+			free(history[i]);
+			history[i] = NULL;
+		}
 	}
 
 	history_count = 0;

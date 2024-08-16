@@ -12,7 +12,12 @@
 void shell_exit(char *line, char **args)
 {
 	free_history();
-	free(line);
-	free_continue(args);
-	exit(0);
+
+	if (line != NULL)
+		free(line);
+
+	if (args != NULL)
+		free_continue(args);
+
+	exit(EXIT_SUCCESS);
 }
