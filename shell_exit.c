@@ -11,6 +11,7 @@
 
 void shell_exit(char *line, char **args)
 {
+	free_history();
 	free(line);
 	free_continue(args);
 	exit(0);

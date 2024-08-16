@@ -22,7 +22,6 @@ int main(int argc, char **argv, char **envp)
 		line = input("$");
 		if (line == NULL)
 			break;
-
 		args = parse(line, " \n");
 		if (args == NULL)
 		{
@@ -30,7 +29,6 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 			continue;
 		}
-
 		if (args[0] != NULL)
 		{
 			if (strcmp(args[0], "exit") == 0)
@@ -39,15 +37,17 @@ int main(int argc, char **argv, char **envp)
 				change_dir(args[1]);
 			else if (strcmp(args[0], "env") == 0)
 				print_env(envp);
+			else if (strcmp(args[0], "history") == 0)
+				print_history(NULL);
 			else
+			{
+				print_history(line);
 				execute(args, envp);
+			}
 		}
 		free_continue(args);
 		free(line);
 	}
-	if (args)
-		free_continue(args);
-	free(line);
-
+	shell_exit();
 	return (0);
 }
