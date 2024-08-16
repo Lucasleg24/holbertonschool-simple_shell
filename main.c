@@ -15,15 +15,13 @@ int main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, sigint);
 
 	while (1)
 	{
 		line = input("$");
 		if (line == NULL)
-		{
-			printf("\n");
 			break;
-		}
 
 		args = parse(line, " \n");
 		if (args == NULL)
@@ -47,6 +45,9 @@ int main(int argc, char **argv, char **envp)
 		free_continue(args);
 		free(line);
 	}
+	if (args)
+		free_continue(args);
+	free(line);
 
 	return (0);
 }

@@ -10,7 +10,7 @@
 char **parse(char *buffer, const char *str)
 {
 	char *token = NULL, **commands = NULL;
-	int i = 0, j, tokenlen = 0;
+	int i, j, tokenlen = 0;
 
 	if (buffer == NULL || str == NULL)
 		return (NULL);
