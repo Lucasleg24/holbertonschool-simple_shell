@@ -4,7 +4,7 @@
 
 ## Repository Description
 
-This repository contains the files to simulate a basic **Unix Shell** with its respective commands. It uses the POSIX API to implement many of the Shell's features and is designed for the [Holberton School] (https://www.holbertonschool.com “Holberton School.”).
+This repository contains the files to simulate a basic **Unix Shell** with its respective commands. It uses the POSIX API to implement many of the Shell's features and is designed for the Holberton School (https://www.holbertonschool.com).
 
 The predominantly used calls are **read**, **write**, **open**, **execve**, **exit**, **fflush**, **fork**, **free**, **malloc**, **getline**, **isatty**, **perror**, **strtok** and **wait**.
 
