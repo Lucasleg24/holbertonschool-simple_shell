@@ -37,10 +37,13 @@ void execute(char **command, char **envp)
 	else if (pid == 0)
 	{
 		if (execve(actual_command, command, envp) == -1)
+		{
 			perror("Shell");
-		free(actual_command);
-		free_history();
-		exit(EXIT_FAILURE);
+			free(actual_command);
+			free_history();
+			exit(EXIT_FAILURE);
+		} else
+			waitpid(pid, &status, 0);
 	} else
 		wait(&status);
 

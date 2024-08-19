@@ -30,6 +30,11 @@ char **parse(char *buffer, const char *str)
 	}
 
 	token = strtok(buffer, str);
+	if (token == NULL)
+	{
+		free(commands);
+		return (NULL);
+	}
 	for (i = 0; token != NULL; i++)
 	{
 		commands[i] = malloc(strlen(token) + 1);
