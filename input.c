@@ -24,7 +24,7 @@ char *input(const char *text)
 
 	if (read == -1)
 	{
-		perror("banane");
+		perror("getline");
 		free(buffer);
 		free_history();
 		exit(EXIT_FAILURE);
