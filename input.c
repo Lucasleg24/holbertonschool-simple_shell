@@ -21,8 +21,10 @@ char *input(const char *text)
 
 	if (getline(&buffer, &len, stdin) == -1)
 	{
-		perror("getline");
-		free(buffer);
+		if (buffer == NULL)
+		{
+			free(buffer);
+		}
 		free_history();
 		exit(EXIT_FAILURE);
 	}
