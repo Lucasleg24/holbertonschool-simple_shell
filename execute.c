@@ -22,7 +22,7 @@ void execute(char **command, char **envp)
 
 	if (actual_command == NULL)
 	{
-		perror("./shell");
+		perror("./hsh");
 		return;
 	}
 

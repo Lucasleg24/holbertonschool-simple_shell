@@ -19,5 +19,5 @@ void shell_exit(char *line, char **args)
 	if (args != NULL)
 		free_continue(args);
 
-	exit(EXIT_SUCCESS);
+	return (0);
 }

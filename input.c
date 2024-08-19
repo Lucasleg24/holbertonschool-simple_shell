@@ -21,7 +21,6 @@ char *input(const char *text)
 
 	if (getline(&buffer, &len, stdin) == -1)
 	{
-		perror("getline");
 		free(buffer);
 		free_history();
 		exit(EXIT_FAILURE);
