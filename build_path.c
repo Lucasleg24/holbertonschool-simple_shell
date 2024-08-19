@@ -3,9 +3,9 @@
 /**
  * buildPath - Build the path
  *
- * @envp: Environnement variable
+ * @envp: The environment variables
  *
- * Return: The result in string
+ * Return: The path or NULL
  */
 
 char *buildPath(char **envp)

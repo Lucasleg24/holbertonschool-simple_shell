@@ -1,10 +1,12 @@
 #include "shell.h"
 
 /**
- * parse - change in token the string
- * @buffer: buffer with the string
- * @str: delimitor for create token
- * Return: return a pointer in pointer
+ * parse - Change the string into token
+ *
+ * @buffer: The buffer
+ * @str: The delimiter
+ *
+ * Return: The tokenized command
  */
 
 char **parse(char *buffer, const char *str)
@@ -23,7 +25,7 @@ char **parse(char *buffer, const char *str)
 	commands = malloc((tokenlen + 2) * sizeof(char *));
 	if (commands == NULL)
 	{
-		perror("Impossible d'allouer le buffer");
+		perror("Unable to allocate buffer");
 		return (NULL);
 	}
 
@@ -33,14 +35,13 @@ char **parse(char *buffer, const char *str)
 		commands[i] = malloc(strlen(token) + 1);
 		if (commands[i] == NULL)
 		{
-			perror("Impossible d'allouer le buffer");
+			perror("Unable to allocate buffer");
 			free_continue(commands);
 			return (NULL);
 		}
 		strcpy(commands[i], token);
 		token = strtok(NULL, str);
 	}
-
 	commands[i] = NULL;
 
 	return (commands);

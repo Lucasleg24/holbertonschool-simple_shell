@@ -1,10 +1,12 @@
 #include "shell.h"
 
 /**
- * execute - execute the child process
- * @command: token arguments
- * @envp: environnement variable
- * Return: return void
+ * execute - Executes the command in a child process
+ *
+ * @command: The command
+ * @envp: The environment variables
+ *
+ * Return: Nothing
  */
 
 void execute(char **command, char **envp)
@@ -37,6 +39,7 @@ void execute(char **command, char **envp)
 		if (execve(actual_command, command, envp) == -1)
 			perror("Shell");
 		free(actual_command);
+		free_history();
 		exit(EXIT_FAILURE);
 	} else
 		wait(&status);

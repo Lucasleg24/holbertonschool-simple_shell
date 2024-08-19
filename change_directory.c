@@ -1,9 +1,11 @@
 #include "shell.h"
 
 /**
- * change_dir - use cd
- * @path: path for cd
- * Return: return error or success value
+ * change_dir - Function to change directory
+ *
+ * @path: The way to the new directory
+ *
+ * Return: 1 or -1
  */
 
 int change_dir(const char *path)
