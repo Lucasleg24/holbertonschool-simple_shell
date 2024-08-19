@@ -1,7 +1,4 @@
 # simple_shell
-
-![Linux pingu](/pingu.png)
-
 ## Repository Description
 
 This repository contains the files to simulate a basic **Unix Shell** with its respective commands. It uses the POSIX API to implement many of the Shell's features and is designed for the [Holberton School] (https://www.holbertonschool.com “Holberton School.”).
@@ -57,6 +54,10 @@ valgrind --leak-check=full ./hsh
 - Or just **run** and try this shell using:
 ```
 ./hsh
+```
+- Or **execute** a command by trying the shell directly:
+```
+ls | ./hsh
 ```
 - This program provides a simple manual to know and get familiar with the shell. Open it by typing: 
 ```
