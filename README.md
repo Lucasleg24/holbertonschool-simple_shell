@@ -1,7 +1,10 @@
 # simple_shell
+
+![Angry linux](/pingu.png)
+
 ## Repository Description
 
-This repository contains the files to simulate a basic **Unix Shell** with its respective commands. It uses the POSIX API to implement many of the Shell's features and is designed for the [Holberton School] (https://www.holbertonschool.com “Holberton School.”).
+This repository contains the files to simulate a basic **Unix Shell** with its respective commands. It uses the POSIX API to implement many of the Shell's features and is designed for the Holberton School (https://www.holbertonschool.com).
 
 The predominantly used calls are **read**, **write**, **open**, **execve**, **exit**, **fflush**, **fork**, **free**, **malloc**, **getline**, **isatty**, **perror**, **strtok** and **wait**.
 
@@ -57,7 +60,7 @@ valgrind --leak-check=full ./hsh
 ```
 - Or **execute** a command by trying the shell directly:
 ```
-ls | ./hsh
+echo "/bin/ls" | ./hsh
 ```
 - This program provides a simple manual to know and get familiar with the shell. Open it by typing: 
 ```

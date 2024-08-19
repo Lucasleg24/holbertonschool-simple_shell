@@ -22,7 +22,7 @@ void execute(char **command, char **envp)
 
 	if (actual_command == NULL)
 	{
-		perror(command[0]);
+		perror("./hsh");
 		return;
 	}
 
@@ -42,10 +42,9 @@ void execute(char **command, char **envp)
 			free(actual_command);
 			free_history();
 			exit(EXIT_FAILURE);
-		}
-
-	}
-	else
+		} else
+			waitpid(pid, &status, 0);
+	} else
 		wait(&status);
 
 	if (actual_command != command[0])

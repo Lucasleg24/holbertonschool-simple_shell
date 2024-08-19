@@ -24,8 +24,15 @@ int main(int argc, char **argv, char **envp)
 		line = input("$");
 		if (line == NULL)
 		{
-			shell_exit(line, args);
+			if (isatty(0))
+				printf("\n");
 			break;
+		}
+
+		if (strlen(line) == 0)
+		{
+			free(line);
+			continue;
 		}
 
 		args = parse(line, " \n");
@@ -35,10 +42,10 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 			continue;
 		}
-
 		if (args[0] != NULL)
 			process_command(args, envp, line);
-
+		if (!isatty(STDIN_FILENO))
+			break;
 		free_continue(args);
 		free(line);
 	}
