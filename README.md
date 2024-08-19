@@ -55,6 +55,10 @@ valgrind --leak-check=full ./hsh
 ```
 ./hsh
 ```
+- Or **execute** a command by trying the shell directly:
+```
+ls | ./hsh
+```
 - This program provides a simple manual to know and get familiar with the shell. Open it by typing: 
 ```
 man ./man_1_simple_shell
