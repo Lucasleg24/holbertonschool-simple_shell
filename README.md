@@ -60,7 +60,7 @@ valgrind --leak-check=full ./hsh
 ```
 - Or **execute** a command by trying the shell directly:
 ```
-ls | ./hsh
+echo "/bin/ls" | ./hsh
 ```
 - This program provides a simple manual to know and get familiar with the shell. Open it by typing: 
 ```
