@@ -1,9 +1,11 @@
 #include "shell.h"
 
 /**
- * input - copy the standard input
- * @text: string with the line
- * Return: return the string copy
+ * input - Stores user input
+ *
+ * @text: The user input
+ *
+ * Return: The address where the user input is stored
  */
 
 char *input(const char *text)
@@ -19,7 +21,9 @@ char *input(const char *text)
 
 	if (getline(&buffer, &len, stdin) == -1)
 	{
+		perror("getline");
 		free(buffer);
+		free_history();
 		exit(EXIT_FAILURE);
 	}
 

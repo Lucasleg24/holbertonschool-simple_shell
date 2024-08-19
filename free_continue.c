@@ -1,9 +1,11 @@
 #include "shell.h"
 
 /**
- * free_continue - free all content
- * @command: array with pointer
- * Return: return void
+ * free_continue - Free all content
+ *
+ * @command: The command line
+ *
+ * Return: Nothing
  */
 
 void free_continue(char **command)
