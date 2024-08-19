@@ -88,7 +88,7 @@ The next steps are a brief description about how the shell works:
 
 ## Flowchart
 
-![Flowchart](/flowchart.jpg)
+![Flowchart](/flowchart.jpeg)
 
 ## Examples
 
