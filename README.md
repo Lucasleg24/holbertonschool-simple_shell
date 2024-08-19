@@ -1,8 +1,4 @@
 # simple_shell
-## Images
-
-![This is an alt text.](/image/sample.webp "This is a sample image.")
-
 ## Repository Description
 
 This repository contains the files to simulate a basic **Unix Shell** with its respective commands. It uses the POSIX API to implement many of the Shell's features and is designed for the [Holberton School] (https://www.holbertonschool.com “Holberton School.”).
@@ -92,7 +88,7 @@ The next steps are a brief description about how the shell works:
 
 ## Flowchart
 
-Ici le flowchart a rajouter
+![Flowchart](/flowchart.jpg)
 
 ## Examples
 
