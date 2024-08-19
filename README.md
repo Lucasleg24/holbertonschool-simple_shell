@@ -90,7 +90,9 @@ The next steps are a brief description about how the shell works:
 5. After tokening the command, *execve()* function brings and executes it, the it frees all allocated memory with *free()*.
 6. Finally, the program returns to main process: prints the prompt, and waits for another user input.
 
+## Flowchart
 
+Ici le flowchart a rajouter
 
 ## Examples
 
