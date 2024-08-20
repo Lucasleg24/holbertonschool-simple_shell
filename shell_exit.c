@@ -11,8 +11,7 @@
 
 void shell_exit(char *line, char **args)
 {
-	if (isatty(0))
-		free_history();
+	free_history();
 
 	if (line != NULL)
 		free(line);

@@ -28,20 +28,19 @@ char **parse(char *buffer, const char *str)
 		perror("Unable to allocate buffer");
 		return (NULL);
 	}
-
 	token = strtok(buffer, str);
-
 	if (token == NULL)
 	{
-		free(commands);
+		free_continue(commands);
 		return (NULL);
 	}
+
 	for (i = 0; token != NULL; i++)
 	{
 		commands[i] = malloc(strlen(token) + 1);
 		if (commands[i] == NULL)
 		{
-			perror("Unable to allocate buffer");
+			perror("Unable to allocate commands[i]");
 			free_continue(commands);
 			return (NULL);
 		}

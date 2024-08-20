@@ -48,6 +48,8 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 		}
 	}
+
+	printf("%s\n", "je sort par la voie normal");
 	shell_exit(line, args);
 	return (0);
 }
