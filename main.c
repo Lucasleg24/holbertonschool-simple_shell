@@ -48,7 +48,6 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 		}
 	}
-	if (isatty(0))
-		shell_exit(line, args);
+	shell_exit(line, args);
 	return (0);
 }
