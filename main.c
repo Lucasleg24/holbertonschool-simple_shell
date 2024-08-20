@@ -12,8 +12,8 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	char *line;
-	char **args;
+	char *line = NULL;
+	char **args = NULL;
 
 	(void)argv;
 	(void)argc;
