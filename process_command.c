@@ -13,7 +13,7 @@
 void process_command(char **args, char **envp, char *line)
 {
 	if (isatty(0) && strcmp(args[0], "exit") != 0)
-                print_history(line);
+		print_history(line);
 
 	if (strcmp(args[0], "exit") == 0)
 		shell_exit(line, args);
