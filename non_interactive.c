@@ -10,36 +10,42 @@
 
 void non_interactive_mode(char **envp)
 {
-	char *line;
-	char **args, **commands;
+	char *line = NULL;
+	char **args = NULL, **commands = NULL;
 	size_t len = 0, i;
 	ssize_t read;
 
 	while ((read = getline(&line, &len, stdin)) != -1)
 	{
+
 		if (read > 0 && line[read - 1] == '\n')
 			line[read - 1] = '\0';
 
-		commands = parse_non_interactive(line, " \n");
-		if (args == NULL)
+		commands = parse(line, " \n");
+		if (commands == NULL)
 		{
-			perror("parse la place");
-			return;
+			perror("parse commands");
+			continue;
 		}
 
-		
 		for (i = 0; commands[i] != NULL; i++)
 		{
 			args = parse(commands[i], " \t\n");
+			if (args == NULL)
+			{
+				perror("parse args");
+				continue;
+			}
 
-			if (args == NULL && args[0] == NULL)
+			if (args[0] != NULL)
 				process_command(args, envp, commands[i]);
 
-			free_continue(args);
+			if (args)
+				free_continue(args);
 		}
-		free_continue(commands);
+		if (commands)
+			free_continue(commands);
 	}
-
 	if (line)
 		free(line);
 }

@@ -18,7 +18,6 @@ int main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)argc;
 	signal(SIGINT, sigint);
-
 	if (!isatty(0))
 		non_interactive_mode(envp);
 	else
