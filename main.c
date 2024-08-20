@@ -12,8 +12,8 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	char *line;
-	char **args;
+	char *line = NULL;
+	char **args = NULL;
 
 	(void)argv;
 	(void)argc;
@@ -48,7 +48,6 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 		}
 	}
-	if (isatty(0))
-		shell_exit(line, args);
+	shell_exit(line, args);
 	return (0);
 }

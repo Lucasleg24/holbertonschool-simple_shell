@@ -34,17 +34,16 @@ void non_interactive_mode(char **envp)
 			if (args == NULL)
 			{
 				perror("parse args");
+				free_continue(commands);
 				continue;
 			}
 
 			if (args[0] != NULL)
 				process_command(args, envp, commands[i]);
 
-			if (args)
-				free_continue(args);
+			free_continue(args);
 		}
-		if (commands)
-			free_continue(commands);
+		free_continue(commands);
 	}
 	if (line)
 		free(line);

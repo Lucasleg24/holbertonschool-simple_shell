@@ -15,9 +15,10 @@ void free_continue(char **command)
 	if (command == NULL)
 		return;
 
-	for (i = 0; command[i] != NULL; i++)
+	if (command[0] != NULL)
 	{
-		free(command[i]);
+		for (i = 0; command[i] != NULL; i++)
+			free(command[i]);
 	}
 
 	free(command);
