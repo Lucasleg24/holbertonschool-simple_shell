@@ -95,7 +95,7 @@ The next steps are a brief description about how the shell works:
 
 ## Flowchart
 
-![Flowchart](/flowchart.jpeg)
+![Flowchart](https://www.pixenli.com/image/Q7NdejjO)
 
 ## Examples
 

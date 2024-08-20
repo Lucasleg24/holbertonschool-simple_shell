@@ -22,6 +22,7 @@
  */
 
 int main(int argc, char **argv, char **envp);
+void non_interactive_mode(char **envp);
 
 /*
  *  ----------------------------------

@@ -30,6 +30,7 @@ char **parse(char *buffer, const char *str)
 	}
 
 	token = strtok(buffer, str);
+
 	if (token == NULL)
 	{
 		free(commands);

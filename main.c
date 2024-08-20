@@ -15,41 +15,40 @@ int main(int argc, char **argv, char **envp)
 	char *line;
 	char **args;
 
-	(void)argc;
 	(void)argv;
+	(void)argc;
 	signal(SIGINT, sigint);
-
-	while (1)
+	if (!isatty(0))
+		non_interactive_mode(envp);
+	else
 	{
-		line = input("$");
-		if (line == NULL)
+		while (1)
 		{
-			if (isatty(0))
-				printf("\n");
-			break;
-		}
+			line = input("$");
+			if (line == NULL)
+				break;
 
-		if (strlen(line) == 0)
-		{
-			free(line);
-			continue;
-		}
+			if (strlen(line) == 0)
+			{
+				free(line);
+				continue;
+			}
 
-		args = parse(line, " \n");
-		if (args == NULL)
-		{
-			perror("parse");
+			args = parse(line, " \n");
+			if (args == NULL)
+			{
+				perror("parse");
+				free(line);
+				continue;
+			}
+			if (args[0] != NULL)
+				process_command(args, envp, line);
+
+			free_continue(args);
 			free(line);
-			continue;
 		}
-		if (args[0] != NULL)
-			process_command(args, envp, line);
-		if (!isatty(STDIN_FILENO))
-			break;
-		free_continue(args);
-		free(line);
 	}
-
-	shell_exit(line, args);
+	if (isatty(0))
+		shell_exit(line, args);
 	return (0);
 }

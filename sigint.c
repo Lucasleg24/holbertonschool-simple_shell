@@ -11,5 +11,5 @@
 void sigint(int sig)
 {
 	(void)sig;
-	putchar('\n');
+	printf("\n");
 }
