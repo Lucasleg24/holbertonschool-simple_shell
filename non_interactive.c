@@ -43,10 +43,10 @@ void non_interactive_mode(char **envp)
 				process = process_command(args, envp, commands[i]);
 
 			free_continue(args);
+			if (process == -1)
+				break;
 		}
 		free_continue(commands);
-		if (process == -1)
-			break;
 	}
 	if (line)
 		free(line);
