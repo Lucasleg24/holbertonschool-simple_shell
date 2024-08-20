@@ -14,6 +14,7 @@ void non_interactive_mode(char **envp)
 	char **args = NULL, **commands = NULL;
 	size_t len = 0, i;
 	ssize_t read;
+	int process;
 
 	while ((read = getline(&line, &len, stdin)) != -1)
 	{
@@ -39,11 +40,13 @@ void non_interactive_mode(char **envp)
 			}
 
 			if (args[0] != NULL)
-				process_command(args, envp, commands[i]);
+				process = process_command(args, envp, commands[i]);
 
 			free_continue(args);
 		}
 		free_continue(commands);
+		if (process == -1)
+			break;
 	}
 	if (line)
 		free(line);

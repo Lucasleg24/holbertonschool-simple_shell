@@ -50,7 +50,7 @@ void execute(char **command, char **envp);
  * ----------------------------------
  */
 
-void process_command(char **args, char **envp, char *line);
+int process_command(char **args, char **envp, char *line);
 int change_dir(const char *path);
 void print_env(char **env);
 void print_history(const char *command);
