@@ -30,7 +30,6 @@ void non_interactive_mode(char **envp)
 
 		for (i = 0; commands[i] != NULL; i++)
 		{
-			printf("i = %ld\n", i);
 			args = parse(commands[i], " \t\n");
 			if (args == NULL)
 			{
@@ -43,11 +42,8 @@ void non_interactive_mode(char **envp)
 				process_command(args, envp, commands[i]);
 
 			free_continue(args);
-			args = NULL;
-			free(commands[i]);
 		}
 		free_continue(commands);
-		commands = NULL;
 	}
 	if (line)
 		free(line);
