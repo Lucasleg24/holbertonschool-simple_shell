@@ -33,6 +33,7 @@ void non_interactive_mode(char **envp);
 void sigint(int sig);
 char *input(const char *text);
 char **parse(char *buffer, const char *str);
+char **parse_non_interactive(char *buffer, const char *str);
 
 /*
  * ----------------------------------
