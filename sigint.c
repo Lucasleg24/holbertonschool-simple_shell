@@ -11,5 +11,6 @@
 void sigint(int sig)
 {
 	(void)sig;
-	printf("^C\n$ ");
+
+	write(1, "\n$ ", 3);
 }
