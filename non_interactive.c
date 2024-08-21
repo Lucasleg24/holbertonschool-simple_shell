@@ -11,17 +11,16 @@
 void non_interactive_mode(char **envp)
 {
 	char *line = NULL;
-	char **args = NULL, **commands = NULL;
-	size_t len = 0, i;
+	char **commands = NULL;
+	size_t len = 0;
 	ssize_t read;
-	int process;
+	int process, i;
+	char *temp_command[2];
 
 	while ((read = getline(&line, &len, stdin)) != -1)
 	{
-
 		if (read > 0 && line[read - 1] == '\n')
 			line[read - 1] = '\0';
-
 		commands = parse(line, " \n");
 		if (commands == NULL)
 		{
@@ -31,23 +30,21 @@ void non_interactive_mode(char **envp)
 
 		for (i = 0; commands[i] != NULL; i++)
 		{
-			args = parse(commands[i], " \t\n");
-			if (args == NULL)
+
+			temp_command[0] = commands[i];
+			temp_command[1] = NULL;
+			if (temp_command != NULL && temp_command[0] != NULL)
 			{
-				perror("parse args");
-				free_continue(commands);
-				continue;
+				for (i = 0; commands[i] != NULL; i++)
+					process = process_command(temp_command, envp, line);
+				if (process == -1)
+					break;
 			}
 
-			if (args[0] != NULL)
-				process = process_command(args, envp, commands[i]);
-
-			free_continue(args);
-			if (process == -1)
-				break;
+			free(commands[i]);
 		}
 		free_continue(commands);
-	}
-	if (line)
 		free(line);
+	}
 }
+

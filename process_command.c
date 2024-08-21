@@ -12,13 +12,14 @@
 
 int process_command(char **args, char **envp, char *line)
 {
+	int status = 0;
 
 	if (strcmp(args[0], "exit") == 0)
 	{
 		if (isatty(0))
 			shell_exit(line, args);
 		else
-			return (-1);
+			status = -1;
 	}
 	else if (strcmp(args[0], "cd") == 0)
 		change_dir(args[1]);
@@ -27,7 +28,7 @@ int process_command(char **args, char **envp, char *line)
 	else if (strcmp(args[0], "history") == 0)
 		print_history(NULL);
 	else
-		execute(args, envp);
+	       execute(args, envp);
 
-	return (0);
+	return (status);
 }
