@@ -1,5 +1,7 @@
 #include "shell.h"
 
+int exit_value = 0;
+
 /**
  * main - Main function of the program
  *
@@ -48,6 +50,6 @@ int main(int argc, char **argv, char **envp)
 			free(line);
 		}
 	}
-	shell_exit(line, args);
+	shell_exit(line, args, exit_value);
 	return (0);
 }

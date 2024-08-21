@@ -12,10 +12,11 @@
 
 int process_command(char **args, char **envp, char *line)
 {
+
 	if (strcmp(args[0], "exit") == 0)
 	{
 		if (isatty(0))
-			shell_exit(line, args);
+			shell_exit(line, args, exit_value);
 		else
 			return (-1);
 	}
