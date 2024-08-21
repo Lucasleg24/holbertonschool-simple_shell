@@ -14,7 +14,7 @@ char **parse(char *buffer, const char *str)
 	char *token = NULL, **commands = NULL;
 	int i, j, tokenlen = 0;
 
-	if (buffer == NULL || str == NULL)
+	if (buffer == NULL || str == NULL || strlen(buffer) == 0 || buffer[0] == '\n')
 		return (NULL);
 
 	for (j = 0; buffer[j]; j++)

@@ -35,13 +35,13 @@ int main(int argc, char **argv, char **envp)
 			}
 
 			args = parse(line, " \n");
-			if (args == NULL)
+			if (args == NULL || args[0] == NULL)
 			{
-				perror("parse");
 				free(line);
+				free_continue(args);
 				continue;
 			}
-			if (args[0] != NULL)
+			if (args != NULL && args[0] != NULL)
 				process_command(args, envp, line);
 
 			free_continue(args);

@@ -10,15 +10,14 @@
  * Return: Nothing
  */
 
-void process_command(char **args, char **envp, char *line)
+int process_command(char **args, char **envp, char *line)
 {
-
 	if (strcmp(args[0], "exit") == 0)
 	{
 		if (isatty(0))
 			shell_exit(line, args);
 		else
-			return;
+			return (-1);
 	}
 	else if (strcmp(args[0], "cd") == 0)
 		change_dir(args[1]);
@@ -28,4 +27,6 @@ void process_command(char **args, char **envp, char *line)
 		print_history(NULL);
 	else
 		execute(args, envp);
+
+	return (0);
 }
