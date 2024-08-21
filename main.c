@@ -41,6 +41,7 @@ int main(int argc, char **argv, char **envp)
 				free_continue(args);
 				continue;
 			}
+
 			if (args != NULL && args[0] != NULL)
 				process_command(args, envp, line);
 
