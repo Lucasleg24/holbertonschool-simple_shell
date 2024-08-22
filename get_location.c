@@ -19,7 +19,6 @@ char *get_location(char *command, char **envp)
 
 	command_length = strlen(command);
 	path_token = strtok(path, ":");
-
 	while (path_token != NULL)
 	{
 		directory_length = strlen(path_token);

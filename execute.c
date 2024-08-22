@@ -29,9 +29,9 @@ void execute(char **command, char **envp)
 	pid = fork();
 	if (pid == -1)
 	{
-		perror("Shell: fork error");
+		perror("./hsh: fork error");
 		if (actual_command != command[0])
-		free(actual_command);
+			free(actual_command);
 		return;
 	}
 	else if (pid == 0)
