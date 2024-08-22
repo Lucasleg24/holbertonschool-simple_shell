@@ -9,7 +9,7 @@
  * Return: Nothing
  */
 
-void shell_exit(char *line, char **args)
+void shell_exit(char *line, char **args, int exit_value)
 {
 	if (isatty(0))
 		free_history();
@@ -20,5 +20,5 @@ void shell_exit(char *line, char **args)
 	if (args != NULL)
 		free_continue(args);
 
-	exit(0);
+	exit(exit_value);
 }
