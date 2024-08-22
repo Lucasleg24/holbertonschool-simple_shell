@@ -15,6 +15,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
+extern int exit_value;
+
 /*
  * ----------------------------------
  *		ENTRY POINT
@@ -43,6 +45,7 @@ char **parse(char *buffer, const char *str);
 char *buildPath(char **envp);
 char *get_location(char *command, char **envp);
 void execute(char **command, char **envp);
+void check_pid( char *actual_command, char **command,int status, pid_t pid, char **envp);
 
 /*
  * ----------------------------------
@@ -63,6 +66,6 @@ void print_history(const char *command);
 
 void free_history(void);
 void free_continue(char **command);
-void shell_exit(char *line, char **args);
+void shell_exit(char *line, char **args, int exit_value);
 
 #endif /* SHELL_H */
