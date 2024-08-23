@@ -38,5 +38,6 @@ void non_interactive_mode(char **envp)
 		free(line);
 		line = NULL;
 	}
-	free(line);
+	if (line)
+		free(line);
 }
