@@ -12,9 +12,9 @@ This simple shell is a Shell interface written in the C programming language tha
 
 ## Requirements:
 
-* Operating System: [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/)
+* Operating System: [Ubuntu 22.04 LTS](http://releases.ubuntu.com/22.04/) or later.
 
-* Compiler: [GCC 11.5.0](https://gcc.gnu.org/gcc-11/)
+* Compiler: [GCC 4.8.4](https://ftp.gnu.org/gnu/gcc/gcc-4.8.4/) or later.
 
 ### General.
 
