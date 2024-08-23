@@ -65,7 +65,4 @@ void free_history(void);
 void free_continue(char **command);
 void shell_exit(char *line, char **args);
 
-char **parse_non_interactive(char *line, const char *delim);
-char **parse_with_quotes(char *line, const char *delim, int *num_tokens);
-
 #endif /* SHELL_H */
